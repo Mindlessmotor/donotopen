@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You 💗</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, #ffd6e8, transparent 40%),
+        radial-gradient(circle at bottom right, #ffeecf, transparent 40%),
+        #fff1f6;
+      overflow: hidden;
+    }
+
+    .dialog {
+      background: white;
+      padding: 45px 55px;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      text-align: center;
+      position: relative;
+      max-width: 420px;
+    }
+
+    .heart {
+      font-size: 80px;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 500;
+      color: #333;
+      margin-top: 20px;
+      line-height: 1.4;
+    }
+
+    p {
+      color: #666;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    button {
+      font-size: 17px;
+      padding: 12px 30px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.2s ease;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #yes:hover {
+      transform: scale(1.1);
+    }
+
+    #no {
+      background: #eee;
+      position: absolute;
+      color: #555;
+    }
+
+    .message {
+      margin-top: 25px;
+      font-size: 20px;
+      color: #ff4d6d;
+      display: none;
+    }
+
+    /* confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dialog">
+    <div class="heart">❤️</div>
+
+    <h1>
+      Wasifa,<br>
+      would you like to be my Valentine? 🌸
+    </h1>
+
+    <p>
+      No pressure. Just honesty.
+    </p>
+
+    <div class="buttons">
+      <button id="yes">Yes 💖</button>
+      <button id="no">No</button>
+    </div>
+
+    <div class="message" id="message">
+      That made my day 🌷
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const message = document.getElementById("message");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 220 - 110;
+      const y = Math.random() * 220 - 110;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      message.style.display = "block";
+      popConfetti();
+    });
+
+    function popConfetti() {
+      for (let i = 0; i < 60; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.background =
+          ["#ff4d6d", "#ffd166", "#fcbf49", "#ef476f", "#06d6a0"]
+          [Math.floor(Math.random() * 5)];
+        confetti.style.animationDuration = 2 + Math.random() * 2 + "s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+  </script>
+
+</body>
+</html>
